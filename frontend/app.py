@@ -78,23 +78,10 @@ def load_results():
             return json.load(f)
     return None
 
-@st.cache_resource
-def load_components():
-    return init_components()
-
 def main():
     """Main app function."""
-    # Initialize loading message with progress bar
-    progress_bar = st.progress(0, text="Loading models and dictionaries...")
-    progress_bar.progress(30, text="Loading dictionaries...")
-    
     # Initialize components
-    dict_loader, parser, scorer = load_components()
-    
-    progress_bar.progress(70, text="Loading parser...")
-    
-    progress_bar.progress(100, text="Ready!")
-    progress_bar.empty()
+    dict_loader, parser, scorer = init_components()
     
     # App title and description
     st.title("Syntactic Morality Analyzer")
@@ -143,31 +130,24 @@ def main():
     
     # Display results
     if text_input and (analyze_synx or analyze_baseline):
-        progress_bar = st.progress(0, text="Loading scorer...")
-        progress_bar.progress(25, text="Analyzing text...")
-        
-        baseline_scores = scorer.score_baseline(text_input, selected_dict)
-        
-        progress_bar.progress(50, text="Computing baseline scores...")
-        
-        syntax_scores = scorer.score(text_input, selected_dict)
-        
-        progress_bar.progress(100, text="Done!")
-        progress_bar.empty()
-        
         st.divider()
         st.header("Results")
+        
+        baseline_scores = scorer.score_baseline(text_input, selected_dict)
+        syntax_scores = scorer.score(text_input, selected_dict)
         
         if analyze_baseline:
             st.subheader("Baseline (Keyword Only)")
             for domain, score in baseline_scores.items():
-                st.progress(float(score), text=f"{domain}: {score:.3f}")
+                if score > 0:
+                    st.progress(float(score), text=f"{domain}: {score:.3f}")
         
         if analyze_synx:
             st.subheader("Syntax-Enhanced")
             for domain, score in syntax_scores.items():
-                delta = score - baseline_scores.get(domain, 0)
-                st.progress(float(score), text=f"{domain}: {score:.3f} ({delta:+.3f})")
+                if score > 0:
+                    delta = score - baseline_scores.get(domain, 0)
+                    st.progress(float(score), text=f"{domain}: {score:.3f} ({delta:+.3f})")
             
             # Syntactic breakdown
             st.subheader("Syntactic Breakdown")

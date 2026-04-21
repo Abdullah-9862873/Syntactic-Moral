@@ -21,6 +21,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from pathlib import Path
+from tqdm import tqdm
 
 # Set up paths
 BASE_DIR = Path(__file__).parent
@@ -301,7 +302,7 @@ def main():
     # Test each dictionary
     all_results = {}
     
-    for dict_name in DICTIONARIES_TO_TEST:
+    for dict_name in tqdm(DICTIONARIES_TO_TEST, desc="Dictionaries", position=0):
         # Get domains for this dictionary
         dict_domains = dict_loader.get_domains(dict_name)
         

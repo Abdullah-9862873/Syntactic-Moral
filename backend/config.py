@@ -1,12 +1,11 @@
 """
 Configuration Settings for Syntactic Morality Analyzer
 
-Based on research papers:
-- Weber, R. (UCSB) - Media Neuroscience Lab
-- Hopp, F. R. (2021) eMFD
-- Graham, J. et al. (2013) MFD 2.0
-- Curry, T. et al. (2019) MACD
-- Malik, M. (2025) eMACD
+Based on professors' research:
+- Malik et al. (2025) eMACD
+- Hopp et al. (2021) eMFD
+- Graham et al. (2013) MFD 2.0
+- Curry et al. (2019) MACD
 """
 
 import os
@@ -55,7 +54,7 @@ TFIDF_NGRAM_RANGE = (1, 2)
 
 # Model Settings
 LOGISTIC_REGRESSION_C = 0.1  # Regularization
-MAX_ITERATIONS = 5000
+MAX_ITERATIONS = 500
 
 # Feature weights for syntactic analysis
 ROLE_WEIGHTS = {
