@@ -136,31 +136,59 @@ def main():
         baseline_scores = scorer.score_baseline(text_input, selected_dict)
         syntax_scores = scorer.score(text_input, selected_dict)
         
-        if analyze_baseline:
-            st.subheader("Baseline (Keyword Only)")
-            for domain, score in baseline_scores.items():
-                if score > 0:
-                    st.progress(float(score), text=f"{domain}: {score:.3f}")
+        # Get the domains for this dictionary
+        domains = dict_loader.get_domains(selected_dict)
+        
+        # Show matched words for each domain
+        text_lower = text_input.lower()
         
         if analyze_synx:
-            st.subheader("Syntax-Enhanced")
-            for domain, score in syntax_scores.items():
+            st.subheader("Syntax-Enhanced Results")
+            
+            # Simple compact display for all domains
+            for domain in domains:
+                score = syntax_scores.get(domain, 0)
+                baseline = baseline_scores.get(domain, 0)
+                
                 if score > 0:
-                    delta = score - baseline_scores.get(domain, 0)
-                    st.progress(float(score), text=f"{domain}: {score:.3f} ({delta:+.3f})")
-            
-            # Syntactic breakdown
-            st.subheader("Syntactic Breakdown")
-            syntactic = parser.parse(text_input)
-            col1, col2 = st.columns(2)
-            with col1:
-                st.write("**Tokens:**", syntactic["tokens"])
-                st.write("**Subjects:**", [s["text"] for s in syntactic.get("subjects", [])])
-            with col2:
-                st.write("**Objects:**", [o["text"] for o in syntactic.get("objects", [])])
-            
-            if syntactic.get("negation_scopes"):
-                st.warning("Negation detected! Keywords in negation scope have reduced scores.")
+                    # Get matched words
+                    domain_words = dict_loader.get_words(selected_dict, domain)
+                    if isinstance(domain_words, dict):
+                        domain_words = list(domain_words.keys())
+                    matched = [w for w in domain_words if w.lower() in text_lower]
+                    
+                    # Simple display: Domain [Score | Baseline] + small bar
+                    match_str = f"{matched}" if matched else ""
+                    st.markdown(f"**{domain}** [{score:.3f} | {baseline:.3f}] {match_str}")
+                    st.progress(float(min(score * 2, 1.0)), text=f"{score:.3f}")
+                    st.markdown("")
+        
+        if analyze_baseline:
+            st.subheader("Baseline (Keyword Only)")
+            for domain in domains:
+                score = baseline_scores.get(domain, 0)
+                if score > 0:
+                    domain_words = dict_loader.get_words(selected_dict, domain)
+                    if isinstance(domain_words, dict):
+                        domain_words = list(domain_words.keys())
+                    matched = [w for w in domain_words if w.lower() in text_lower]
+                    if matched:
+                        st.markdown(f"**{domain}**: {', '.join(matched)}")
+                        st.progress(float(score), text=f"Score: {score:.3f}")
+        
+        # Syntactic breakdown
+        st.subheader("Syntactic Breakdown")
+        syntactic = parser.parse(text_input)
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.write("**Tokens:**", syntactic["tokens"])
+        with col2:
+            st.write("**Subjects:**", [s["text"] for s in syntactic.get("subjects", [])])
+        with col3:
+            st.write("**Objects:**", [o["text"] for o in syntactic.get("objects", [])])
+        
+        if syntactic.get("negation_scopes"):
+            st.warning("Negation detected! Keywords in negation scope have reduced scores.")
 
 if __name__ == "__main__":
     main()
