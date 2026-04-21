@@ -83,8 +83,6 @@ python -m spacy download en_core_web_sm
 python run_app.py
 ```
 
-Then open: http://localhost:8501
-
 ### Run Training
 
 ```bash
