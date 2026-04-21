@@ -1,7 +1,17 @@
 """
 Training Script for Syntactic Morality Analyzer
-Usage: python train.py
-Output: Trained models and evaluation results
+
+Tests across ALL 5 dictionaries as requested by Musa Malik:
+> "Could you repeat the same analyses across MFD, MFD 2.0, eMFD lexicons? 
+> I am curious to see if variations across MFT dictionaries increase baseline lexicon effects."
+
+Usage:
+    python train.py
+
+Output:
+    - Trained models for each dictionary
+    - Evaluation results for research summary
+    - Multi-dictionary comparison table
 """
 
 import os
@@ -21,21 +31,16 @@ MODELS_DIR.mkdir(exist_ok=True)
 # Add parent to path for imports
 sys.path.insert(0, str(BASE_DIR))
 
-# Fix imports - use dynamic loading
-_pipeline_dir = BASE_DIR / "pipeline"
-if str(_pipeline_dir) not in sys.path:
-    sys.path.insert(0, str(_pipeline_dir))
+from pipeline.dictionaries import DictionaryLoader
+from pipeline.parser import SyntacticParser
+from pipeline.features import FeatureExtractor
+from pipeline.classifier import MoralClassifier
 
-from dictionaries import DictionaryLoader
-from parser import SyntacticParser
-from features import FeatureExtractor
-from classifier import MoralClassifier
-
-# Dictionaries to test
+# Dictionaries to test (as requested by Musa)
 DICTIONARIES_TO_TEST = ["mfd", "mfd2", "emfd", "emacd", "macd"]
 
-# Training settings - FULL DATA
-SAMPLE_SIZE = None  # Use full dataset (all ~61K samples)
+# Training settings - use ALL samples
+SAMPLE_SIZE = None  # Use ALL 61,226 samples
 
 # Domain labels per dictionary type
 MFT_DOMAINS = ['Care', 'Equality', 'Proportionality', 'Authority', 'Loyalty', 'Purity']
@@ -188,6 +193,7 @@ def print_multi_dict_summary(all_results):
     """Print summary table comparing all dictionaries."""
     print("\n" + "="*80)
     print("MULTI-DICTIONARY COMPARISON - Syntactic Morality Analyzer")
+    print("Answering Musa's request: 'variations across MFT dictionaries increase baseline lexicon effects'")
     print("="*80)
     print("")
     print(f"{'Dictionary':<12} {'Baseline':>10} {'Syntax':>10} {'Δ':>10} {'Theory':<10} {'Source'}")
@@ -234,8 +240,8 @@ def save_results(all_results):
     summary_lines.append("EVALUATION RESULTS - Syntactic Morality Analyzer")
     summary_lines.append("=" * 60)
     summary_lines.append("")
-    summary_lines.append("Testing across ALL dictionaries:")
-    # Multi-dictionary analysis
+    summary_lines.append("Testing across ALL dictionaries as requested by Musa Malik:")
+    summary_lines.append("> 'Could you repeat the same analyses across MFD, MFD 2.0, eMFD lexicons?'")
     summary_lines.append("")
     
     for dict_name, r in all_results.items():
@@ -268,13 +274,12 @@ def main():
     print("SYNTACTIC MORALITY ANALYZER - Multi-Dictionary Training")
     print("=" * 60)
     print("")
-    print("Training on MFRC dataset:")
-    print("- Comparing baseline vs syntax-enhanced scoring")
+    print("Answering Musa's request:")
+    print("> 'Could you repeat the same analyses across MFD, MFD 2.0, eMFD lexicons?'")
+    print("> 'I am curious to see if variations across MFT dictionaries increase baseline lexicon effects.'")
     print("")
     
     # Load data
-    print("\n[░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0%")
-    print("Loading MFRC dataset...")
     texts, labels, labels_list = load_mfrc()
     
     # Initialize parser
@@ -291,30 +296,25 @@ def main():
         texts, labels, test_size=0.2, random_state=42
     )
     
-    print(f"\n[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 30%")
-    print(f"Train: {len(X_train)}, Test: {len(X_test)}")
+    print(f"\nTrain: {len(X_train)}, Test: {len(X_test)}")
     
+    # Test each dictionary
     all_results = {}
-    total = len(DICTIONARIES_TO_TEST)
     
-    for i, dict_name in enumerate(DICTIONARIES_TO_TEST):
-        progress = int(((i + 1) / total) * 100)
-        print(f"\n[{'█' * progress}{'░' * (100 - progress)}] {progress}%")
-        
+    for dict_name in DICTIONARIES_TO_TEST:
+        # Get domains for this dictionary
         dict_domains = dict_loader.get_domains(dict_name)
         
         if not dict_domains:
             print(f"  Skipping {dict_name} - no domains found")
             continue
         
-        print(f"  Training {dict_name}...")
+        # Use MFT domains for training (same labels for all)
         result = train_and_evaluate_dict(
             dict_name, X_train, y_train, labels_list, parser, dict_loader
         )
         
         all_results[dict_name] = result
-    
-    print(f"\n[{'█' * 20}] 100%")
     
     # Print summary
     print_multi_dict_summary(all_results)

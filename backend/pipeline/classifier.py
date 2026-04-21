@@ -20,7 +20,7 @@ if str(_pipeline_dir) not in sys.path:
     sys.path.insert(0, str(_pipeline_dir))
 
 from features import FeatureExtractor
-from parser import SyntacticParser
+from syntactic_parser import SyntacticParser
 
 
 class MoralClassifier:
