@@ -1,0 +1,8 @@
+{
+    "Care": {"help": 0.85, "care": 0.82, "protect": 0.80, "compassion": 0.78, "kind": 0.75, "hurt": 0.72, "harm": 0.70, "donate": 0.68, "charity": 0.65, "support": 0.62, "nurture": 0.60, "victim": 0.58, "vulnerable": 0.55, "empathy": 0.52, "sympathy": 0.50, "love": 0.48},
+    "Equality": {"fair": 0.82, "equal": 0.80, "justice": 0.78, "rights": 0.75, "discriminat": 0.72, "inequality": 0.70, "unfair": 0.68, "freedom": 0.65, "democracy": 0.62, "unjust": 0.60, "bias": 0.55, "prejudice": 0.52, "segregation": 0.50, "same": 0.48},
+    "Proportionality": {"deserve": 0.78, "balance": 0.75, "guilt": 0.72, "blame": 0.70, "punish": 0.68, "reward": 0.65, "reciproc": 0.62, "crime": 0.58, "sin": 0.55, "offense": 0.52, "wrong": 0.50, "right": 0.48, "moral": 0.45, "ethical": 0.42},
+    "Authority": {"respect": 0.80, "obey": 0.78, "rule": 0.75, "law": 0.72, "leader": 0.70, "government": 0.68, "police": 0.65, "military": 0.62, "tradition": 0.60, "order": 0.58, "hierarchy": 0.55, "author": 0.52, "power": 0.50, "control": 0.48},
+    "Loyalty": {"country": 0.82, "nation": 0.80, "family": 0.78, "friend": 0.75, "group": 0.72, "patriot": 0.70, "loyal": 0.68, "betray": 0.65, "unite": 0.62, "solidarity": 0.60, "team": 0.58, "together": 0.55, "allegiance": 0.52, "faith": 0.50},
+    "Purity": {"pure": 0.85, "sacred": 0.82, "holy": 0.80, "religion": 0.78, "clean": 0.75, "natural": 0.72, "marriage": 0.70, "disgust": 0.65, "degrad": 0.62, "sanct": 0.60, "dirty": 0.55, "gross": 0.52, "degenerate": 0.50, "contamin": 0.48, "sacrileg": 0.45}
+}

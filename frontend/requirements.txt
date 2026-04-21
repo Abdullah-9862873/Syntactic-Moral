@@ -1,0 +1,2 @@
+# Frontend requirements
+# Run: pip install -r ../backend/requirements.txt first

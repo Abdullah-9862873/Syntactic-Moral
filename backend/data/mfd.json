@@ -1,0 +1,8 @@
+{
+    "Care": ["help", "care", "protect", "compassion", "kind", "hurt", "harm", "donate", "charity", "support", "nurture", "victim", "vulnerable", "elderly", "children", "poor", " empathize", "sympathy", "love", "empathy", "cruel", "abuse"],
+    "Equality": ["fair", "equal", "justice", "rights", "discriminat", "inequality", "unfair", "freedom", "democracy", "unjust", "bias", "prejudice", "segregation", "same", "opportunity", "wage", "pay"],
+    "Proportionality": ["deserve", "balance", "guilt", "blame", "punish", "reward", "reciproc", "crime", "sin", "offense", "wrong", "right", "moral", "ethical", "appropriate", "proportion"],
+    "Authority": ["respect", "obey", "rule", "law", "leader", "government", "police", "military", "tradition", "order", "hierarchy", "author", "power", "control", "dominant", "submiss"],
+    "Loyalty": ["country", "nation", "family", "friend", "group", "patriot", "loyal", "betray", "unite", "solidarity", "team", "together", "allegiance", "faith", "enemy"],
+    "Purity": ["pure", "sacred", "holy", "religion", "clean", "natural", "marriage", "disgust", "degrad", "sanct", "dirty", "gross", "degenerate", "contamin", "sacrileg", "abortion"]
+}
