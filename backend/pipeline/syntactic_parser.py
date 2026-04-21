@@ -185,18 +185,49 @@ class SyntacticParser:
         """
         scopes = {}
         
+        # Get token texts for context checking
+        token_texts = [t.text.lower() for t in doc]
+        
         for token in doc:
             if token.text.lower() in self.NEG_TOKENS or token.dep_ == "neg":
-                # Find tokens in the subtree (affected by negation)
-                # This includes the head verb and its dependents
-                scope = [t.i for t in token.head.subtree]
-                # Also include the negation token itself
-                scope.append(token.i)
+                # Check if this is "not only...but" correlative (not actual negation)
+                # Pattern: "not only X but also Y" means BOTH/AND, not negation
+                is_correlative = False
+                if token.text.lower() == "not":
+                    # Check if followed by "only" 
+                    if token.i + 1 < len(doc) and doc[token.i + 1].text.lower() == "only":
+                        is_correlative = True
+                    # Also check if preceded by "not" and followed by "but" pattern
+                    # "not only...but also" is correlative
                 
-                # Also look for "not" directly modifying a verb
-                for child in token.head.children:
-                    if child.dep_ == "neg":
-                        scope.extend([t.i for t in child.subtree])
+                if is_correlative:
+                    # For correlative "not only...but", only negate the "not" itself, not the rest
+                    # This way it doesn't affect other moral words
+                    scope = [token.i]
+                    scopes[token.i] = scope
+                    continue
+                
+                scope = [token.i]
+                
+                # Get all tokens in the negation's subtree
+                for child in token.subtree:
+                    scope.append(child.i)
+                
+                # Also traverse from the negation's head (the verb it modifies)
+                # and get all tokens downstream from that verb
+                head = token.head
+                for t in head.subtree:
+                    scope.append(t.i)
+                
+                # For copular/linking verbs (be, seem, become, etc.)
+                # also get their complements (predicate nominatives)
+                if head.lemma_ in {"be", "seem", "become", "remain", "stay"}:
+                    for child in head.children:
+                        if child.dep_ in {"attr", "acomp", "pcomp", "nsubj"}:
+                            for t in child.subtree:
+                                scope.append(t.i)
+                        # Also include the child itself
+                        scope.append(child.i)
                 
                 scopes[token.i] = list(set(scope))
         

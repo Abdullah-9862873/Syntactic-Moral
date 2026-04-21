@@ -100,15 +100,26 @@ class MoralScorer:
         domain_words = self.dicts.get_words(dict_name, domain)
         
         # Score each keyword occurrence
-        for token_text in syntactic["tokens"]:
+        for idx, token_text in enumerate(syntactic["tokens"]):
             token_lower = token_text.lower()
             
-            # Check if token matches any domain word (partial match)
+            # Check if token matches any domain word (exact match only)
             matched_word = None
+            token_text_clean = token_lower.strip()
             for word in domain_words:
-                if word in token_lower or token_lower in word:
-                    matched_word = word
+                word_clean = word.strip()
+                if word_clean == token_text_clean:
+                    matched_word = word_clean
                     break
+            
+            # Also check lemma matching if no exact match found
+            if not matched_word and idx < len(syntactic["lemmas"]):
+                lemma = syntactic["lemmas"][idx].lower().strip()
+                for word in domain_words:
+                    word_clean = word.strip()
+                    if word_clean == lemma:
+                        matched_word = word_clean
+                        break
             
             if matched_word:
                 # Find grammatical role
@@ -120,9 +131,9 @@ class MoralScorer:
                 # Calculate weight
                 weight = self.ROLE_WEIGHTS.get(role, 1.0)
                 
-                # Apply negation (zero out negated moral language)
+                # Apply negation - reduce but NOT zero out (user wants to see the bar)
                 if is_negated:
-                    weight = 0.0
+                    weight = 0.3  # Reduced but visible
                 
                 # Get word score from dictionary
                 word_score = self.dicts.get_score(dict_name, domain, matched_word)
