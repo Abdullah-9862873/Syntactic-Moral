@@ -1,17 +1,7 @@
 """
 Training Script for Syntactic Morality Analyzer
-
-Tests across ALL 5 dictionaries as requested by Musa Malik:
-> "Could you repeat the same analyses across MFD, MFD 2.0, eMFD lexicons? 
-> I am curious to see if variations across MFT dictionaries increase baseline lexicon effects."
-
-Usage:
-    python train.py
-
-Output:
-    - Trained models for each dictionary
-    - Evaluation results for research summary
-    - Multi-dictionary comparison table
+Usage: python train.py
+Output: Trained models and evaluation results
 """
 
 import os
@@ -41,7 +31,7 @@ from parser import SyntacticParser
 from features import FeatureExtractor
 from classifier import MoralClassifier
 
-# Dictionaries to test (as requested by Musa)
+# Dictionaries to test
 DICTIONARIES_TO_TEST = ["mfd", "mfd2", "emfd", "emacd", "macd"]
 
 # Training settings - FULL DATA
@@ -198,7 +188,6 @@ def print_multi_dict_summary(all_results):
     """Print summary table comparing all dictionaries."""
     print("\n" + "="*80)
     print("MULTI-DICTIONARY COMPARISON - Syntactic Morality Analyzer")
-    print("Answering Musa's request: 'variations across MFT dictionaries increase baseline lexicon effects'")
     print("="*80)
     print("")
     print(f"{'Dictionary':<12} {'Baseline':>10} {'Syntax':>10} {'Δ':>10} {'Theory':<10} {'Source'}")
@@ -245,8 +234,8 @@ def save_results(all_results):
     summary_lines.append("EVALUATION RESULTS - Syntactic Morality Analyzer")
     summary_lines.append("=" * 60)
     summary_lines.append("")
-    summary_lines.append("Testing across ALL dictionaries as requested by Musa Malik:")
-    summary_lines.append("> 'Could you repeat the same analyses across MFD, MFD 2.0, eMFD lexicons?'")
+    summary_lines.append("Testing across ALL dictionaries:")
+    # Multi-dictionary analysis
     summary_lines.append("")
     
     for dict_name, r in all_results.items():
@@ -279,9 +268,8 @@ def main():
     print("SYNTACTIC MORALITY ANALYZER - Multi-Dictionary Training")
     print("=" * 60)
     print("")
-    print("Answering Musa's request:")
-    print("> 'Could you repeat the same analyses across MFD, MFD 2.0, eMFD lexicons?'")
-    print("> 'I am curious to see if variations across MFT dictionaries increase baseline lexicon effects.'")
+    print("Training on MFRC dataset:")
+    print("- Comparing baseline vs syntax-enhanced scoring")
     print("")
     
     # Load data

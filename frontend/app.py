@@ -161,15 +161,13 @@ def main():
         if analyze_baseline:
             st.subheader("Baseline (Keyword Only)")
             for domain, score in baseline_scores.items():
-                if score > 0:
-                    st.progress(float(score), text=f"{domain}: {score:.3f}")
+                st.progress(float(score), text=f"{domain}: {score:.3f}")
         
         if analyze_synx:
             st.subheader("Syntax-Enhanced")
             for domain, score in syntax_scores.items():
-                if score > 0:
-                    delta = score - baseline_scores.get(domain, 0)
-                    st.progress(float(score), text=f"{domain}: {score:.3f} ({delta:+.3f})")
+                delta = score - baseline_scores.get(domain, 0)
+                st.progress(float(score), text=f"{domain}: {score:.3f} ({delta:+.3f})")
             
             # Syntactic breakdown
             st.subheader("Syntactic Breakdown")
