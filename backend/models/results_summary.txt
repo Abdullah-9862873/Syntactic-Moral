@@ -2,8 +2,10 @@
 EVALUATION RESULTS - Syntactic Morality Analyzer
 ============================================================
 
-Testing across ALL dictionaries as requested by Musa Malik:
-> 'Could you repeat the same analyses across MFD, MFD 2.0, eMFD lexicons?'
+Live Demo: https://huggingface.co/spaces/Abdullah9862873/SyntacticMoral
+
+Dataset: USC-MOLA-Lab/MFRC (61,226 samples) | Training: 15,474 | Testing: 3,869
+Dictionary Sources: MFD (Graham 2009), MFD 2.0 (Frimer 2019), eMFD (Hopp 2020), eMACD (Malik 2025), MACD (Curry 2024)
 
 
 MFD (MFT):

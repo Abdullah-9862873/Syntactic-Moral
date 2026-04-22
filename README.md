@@ -71,7 +71,24 @@ Go to: http://localhost:8501
 
 ---
 
-## How to Test
+## Steps To Train and Test
+
+### Training
+
+The model was trained on the **Moral Foundations Resonances Content (MFRC)** dataset from HuggingFace:
+
+```bash
+cd backend
+python train.py
+```
+
+**Training Settings:**
+- Dataset: USC-MOLA-Lab/MFRC (61,226 samples)
+- After filtering: 19,343 moral samples
+- Split: 80% train (15,474), 20% test (3,869)
+- Dictionary: MFD, MFD 2.0, eMFD, eMACD, MACD
+
+### Testing
 
 Run the automated test suite:
 ```bash
@@ -107,20 +124,33 @@ I tested this on 5 different moral dictionaries as requested by Professor Malik:
 
 ---
 
-## Files in This Project
+## File Structure
 
 ```
 SyntacticMoral/
+├── app.py              # Main Streamlit application
+├── run_app.py         # Application runner
+├── requirements.txt   # Python dependencies
 ├── backend/
-│   ├── data/           # Dictionary files (MFD, eMFD, eMACD)
-│   ├── pipeline/       # Core scoring logic
-│   └── tests/         # Automated tests
-├── frontend/
-│   └── app.py         # Streamlit web app
-├── images/            # Screenshots
-├── docs/              # Documentation
-└── research_summary.pdf  # For professors
+│   ├── data/         # Dictionary files (MFD, MFD2.0, eMFD, eMACD, MACD)
+│   ├── models/       # Trained model results
+│   ├── pipeline/    # Core scoring logic
+│   ├── train.py     # Training script
+│   └── tests/      # Automated tests
+├── dataUsed/         # Dataset documentation & references
+├── frontend/        # Legacy frontend code
+└── research_summary.pdf  # Results summary
 ```
+
+## Architecture
+
+1. **DictionaryLoader**: Loads moral dictionaries (JSON format)
+2. **SyntacticParser**: Uses spaCy for grammar analysis (negation detection, subject/object roles)
+3. **MoralScorer**: Computes baseline and syntax-enhanced scores
+4. **FeatureExtractor**: Extracts features for training
+5. **MoralClassifier**: ML classifier for multi-label prediction
+
+See `dataUsed/README.md` for dataset details and references.
 
 ---
 
@@ -133,10 +163,37 @@ If you want to cite this work:
 
 ---
 
+## Datasets Used
+
+### Moral Foundations Resonances Content (MFRC)
+
+- **Source**: https://huggingface.co/datasets/USC-MOLA-Lab/MFRC
+- **Size**: 61,226 samples (19,343 moral samples after filtering)
+- **Split**: 80% train (15,474), 20% test (3,869)
+
+### Dictionaries
+
+| Dictionary | Source | Link |
+|------------|--------|------|
+| MFD | Graham et al. (2009) | Included in dataUsed/ |
+| MFD 2.0 | Frimer et al. (2019) | github.com/medianeuroscience/emfd |
+| eMFD | Hopp et al. (2020) | github.com/medianeuroscience/emfdscore |
+| eMACD | Malik et al. (2025) | github.com/medianeuroscience/eMACDscore |
+| MACD | Curry et al. (2024) | Included in dataUsed/ |
+
+### References
+
+1. Graham, J., et al. (2009). Mapping the moral domain. JPSP.
+2. Frimer, J. A., et al. (2019). Moral Foundations Dictionary 2.0.
+3. Hopp, F. R., et al. (2020). The eMFD. Behavior Research Methods.
+4. Malik, M., et al. (2025). The eMACD. Communication Methods and Measures.
+5. Curry, O. S., et al. (2024). Morality as Cooperation. Heliyon.
+
+---
+
 ## Contact
 
 - Abdullah Sultan
-- Fall 2027 PhD Applicant
 - Email: ag9862873@gmail.com
 
 ---

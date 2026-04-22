@@ -1,0 +1,86 @@
+{
+  "Family": {
+    "family": 1.0,
+    "parent": 1.0,
+    "child": 1.0,
+    "brother": 1.0,
+    "sister": 1.0,
+    "kin": 1.0,
+    "relative": 1.0,
+    "clan": 1.0,
+    "tribe": 1.0,
+    "ancestor": 1.0,
+    "descendant": 1.0
+  },
+  "Group Loyalty": {
+    "team": 1.0,
+    "group": 1.0,
+    "society": 1.0,
+    "community": 1.0,
+    "member": 1.0,
+    "belong": 1.0,
+    "solidarity": 1.0,
+    "unity": 1.0,
+    "collectivism": 1.0,
+    "cooperate": 1.0
+  },
+  "Reciprocity": {
+    "reciprocity": 1.0,
+    "fair": 1.0,
+    "exchange": 1.0,
+    "give": 1.0,
+    "take": 1.0,
+    "balance": 1.0,
+    "equity": 1.0,
+    "return": 1.0,
+    " repay": 1.0,
+    "reward": 1.0
+  },
+  "Heroism": {
+    "hero": 1.0,
+    "brave": 1.0,
+    "courage": 1.0,
+    "bold": 1.0,
+    "heroic": 1.0,
+    "valiant": 1.0,
+    "gallant": 1.0,
+    "daring": 1.0,
+    "fearless": 1.0,
+    "strength": 1.0
+  },
+  "Deference": {
+    "respect": 1.0,
+    "honor": 1.0,
+    "obey": 1.0,
+    "duty": 1.0,
+    "tradition": 1.0,
+    "authority": 1.0,
+    "elder": 1.0,
+    "rank": 1.0,
+    "status": 1.0,
+    "courtesy": 1.0
+  },
+  "Fairness": {
+    "justice": 1.0,
+    "fair": 1.0,
+    "right": 1.0,
+    "equal": 1.0,
+    "equity": 1.0,
+    "law": 1.0,
+    "rule": 1.0,
+    "unfair": 1.0,
+    "bias": 1.0,
+    "discriminate": 1.0
+  },
+  "Property Rights": {
+    "property": 1.0,
+    "own": 1.0,
+    "belong": 1.0,
+    "possession": 1.0,
+    "steal": 1.0,
+    "theft": 1.0,
+    "right": 1.0,
+    "entitle": 1.0,
+    "inherit": 1.0
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "Care": ["help", "care", "caring", "cared", "cares", "protect", "protecting", "compassion", "kind", "kindness", "hurt", "harm", "donate", "charity", "support", "nurture", "nurturing", "victim", "vulnerable", "elderly", "children", "poor", " empathize", "sympathy", "love", "loving", "beloved", "empathy", "cruel", "abuse", "brother", "sister", "family", "heart", "close", "intimate", "trust", "trusting", "faithful", "mother", "father", "mom", "dad", "son", "daughter", "kid", "parent", "child"],
+    "Equality": ["fair", "fairness", "fairly", "fairer", "equal", "equality", "justice", "just", "rights", "discriminat", "inequality", "unfair", "freedom", "democracy", "unjust", "bias", "prejudice", "segregation", "same", "opportunity", "wage", "pay"],
+    "Proportionality": ["deserve", "balance", "guilt", "blame", "punish", "reward", "reciproc", "crime", "sin", "offense", "wrong", "right", "moral", "ethical", "appropriate", "proportion"],
+    "Authority": ["respect", "obey", "rule", "law", "leader", "government", "police", "military", "tradition", "order", "hierarchy", "author", "power", "control", "dominant", "submiss"],
+    "Loyalty": ["country", "nation", "family", "friend", "brother", "sister", "group", "patriot", "loyal", "betray", "unite", "solidarity", "team", "together", "allegiance", "faith", "enemy", "kin", "relative", "clan", "tribe", "mother", "father", "son", "daughter", "parent", "child", "ally", "companion", "partner"],
+    "Purity": ["pure", "sacred", "holy", "religion", "clean", "natural", "marriage", "disgust", "degrad", "sanct", "dirty", "gross", "degenerate", "contamin", "sacrileg", "abortion"]
+}
