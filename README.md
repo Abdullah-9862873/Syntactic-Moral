@@ -6,8 +6,6 @@ A Streamlit-based web application for detecting moral sentiment in text using sy
 
 **Live Demo**: https://huggingface.co/spaces/Abdullah9862873/SyntacticMoral
 
-**GitHub**: https://github.com/Abdullah-9862873/Syntactic-Moral
-
 ---
 
 ## Overview
