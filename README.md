@@ -56,18 +56,29 @@ So I built a smarter system that:
 
 ## How to Run This
 
-### Step 1: Install Requirements
+### Installation
 ```bash
+# Clone the repository
+git clone https://github.com/Abdullah-9862873/Syntactic-Moral.git
+cd Syntactic-Moral
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Download spaCy model
+python -m spacy download en_core_web_sm
 ```
 
-### Step 2: Run the App
+### Run the Application
 ```bash
+# Using run_app.py
 python run_app.py
+
+# OR using streamlit directly
+streamlit run app.py
 ```
 
-### Step 3: Open in Browser
-Go to: http://localhost:8501
+Then open: http://localhost:8501
 
 ---
 
@@ -202,5 +213,4 @@ If you want to cite this work:
 
 Thank you to:
 - **Professor Rene Weber** (UCSB) - Media Neuroscience Lab
-- **Musa Malik** (UCSB) - Lead for eMACD paper
 - The eMACD, eMFD, MFD research teams
