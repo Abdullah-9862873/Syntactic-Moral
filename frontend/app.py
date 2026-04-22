@@ -142,27 +142,6 @@ def main():
         # Show matched words for each domain
         text_lower = text_input.lower()
         
-        if analyze_synx:
-            st.subheader("Syntax-Enhanced Results")
-            
-            # Simple compact display for all domains
-            for domain in domains:
-                score = syntax_scores.get(domain, 0)
-                baseline = baseline_scores.get(domain, 0)
-                
-                if score > 0:
-                    # Get matched words
-                    domain_words = dict_loader.get_words(selected_dict, domain)
-                    if isinstance(domain_words, dict):
-                        domain_words = list(domain_words.keys())
-                    matched = [w for w in domain_words if w.lower() in text_lower]
-                    
-                    # Simple display: Domain [Score | Baseline] + small bar
-                    match_str = f"{matched}" if matched else ""
-                    st.markdown(f"**{domain}** [{score:.3f} | {baseline:.3f}] {match_str}")
-                    st.progress(float(min(score * 2, 1.0)), text=f"{score:.3f}")
-                    st.markdown("")
-        
         if analyze_baseline:
             st.subheader("Baseline (Keyword Only)")
             for domain in domains:
@@ -175,6 +154,14 @@ def main():
                     if matched:
                         st.markdown(f"**{domain}**: {', '.join(matched)}")
                         st.progress(float(score), text=f"Score: {score:.3f}")
+        
+        if analyze_synx:
+            st.subheader("Syntax-Enhanced Results")
+            
+            # Show ALL domains (like original version)
+            for domain, score in syntax_scores.items():
+                delta = score - baseline_scores.get(domain, 0)
+                st.progress(float(score), text=f"{domain}: {score:.3f} ({delta:+.3f})")
         
         # Syntactic breakdown
         st.subheader("Syntactic Breakdown")

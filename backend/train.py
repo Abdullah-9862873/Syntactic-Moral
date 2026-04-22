@@ -90,7 +90,7 @@ def load_mfrc():
     
     # Convert to label matrix
     label_dicts = df['annotation'].apply(get_labels)
-    labels_df = pd.DataFrame(label_dicts.tolist(), columns=MFT_DOMAINS)
+    labels_df = pd.DataFrame(list(label_dicts), columns=MFT_DOMAINS)
     
     # Filter to only moral samples
     mask = labels_df[MFT_DOMAINS].sum(axis=1) > 0

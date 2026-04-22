@@ -9,7 +9,7 @@ from pathlib import Path
 parent_dir = Path(__file__).parent.parent
 sys.path.insert(0, str(parent_dir))
 
-from backend.pipeline.syntactic_parser import SyntacticParser
+from pipeline.syntactic_parser import SyntacticParser
 
 
 def test_parser_initialization():
