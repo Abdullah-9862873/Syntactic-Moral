@@ -1,5 +1,7 @@
 # Syntactic Morality Analyzer
 
+# Syntactic Morality Analyzer
+
 A Streamlit-based web application for detecting moral sentiment in text using syntactic-aware analysis. Extends traditional dictionary-based moral mining with spaCy-powered NLP to handle negation detection and grammatical role weighting.
 
 **Live Demo**: https://huggingface.co/spaces/Abdullah9862873/SyntacticMoral
