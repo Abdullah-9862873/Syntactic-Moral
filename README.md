@@ -1,6 +1,6 @@
 # Syntactic Morality Analyzer
 
-## What's This App? (Like Explaining to a Kid)
+## What's This App? 
 
 Imagine you have a robot that can read text and understand if someone is talking about being nice, fair, or loyal to others. That's what this app does!
 
