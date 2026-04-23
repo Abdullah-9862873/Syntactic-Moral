@@ -76,11 +76,6 @@ python run_app.py
 
 # OR using streamlit directly
 streamlit run app.py
-```
-
-Then open: http://localhost:8501
-
----
 
 ## Steps To Train and Test
 
