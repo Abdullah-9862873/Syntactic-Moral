@@ -208,4 +208,4 @@ If you want to cite this work:
 
 Thank you to:
 - **Professor Rene Weber** (UCSB) - Media Neuroscience Lab
-- The eMACD, eMFD, MFD research teams
+- Mr. Musa Malik (PHD)
