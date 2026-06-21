@@ -4,10 +4,10 @@ Module 2: Dictionary Loading
 Loads and manages all moral dictionaries from professors' research.
 
 Based on:
-- Malik et al. (2025) eMACD - Morality as Cooperation Dictionary
-- Hopp et al. (2021) eMFD - Extended Moral Foundations Dictionary
+- Malik et al. (2025) EMACD - Extended Morality as Cooperation Dictionary
+- Hopp et al. (2021) EMFD - Extended Moral Foundations Dictionary
 - Graham et al. (2013) MFD 2.0 - Moral Foundations Dictionary
-- Curry et al. (2019) MACD - MAC Dictionary
+- Curry et al. (2019) MACD - Morality as Cooperation Dictionary
 
 Usage:
     dict_loader = DictionaryLoader("data")
@@ -54,7 +54,7 @@ class DictionaryLoader:
         # Load eMFD (probabilistic - Extended MFD)
         self._dictionaries["emfd"] = self._load_json("emfd.json")
         
-        # Load eMACD (probabilistic - Extended MAC Dictionary)
+        # Load EMACD (probabilistic - Extended Morality as Cooperation Dictionary)
         self._dictionaries["emacd"] = self._load_json("emacd.json")
         
         # Load MACD (binary - MAC Dictionary)

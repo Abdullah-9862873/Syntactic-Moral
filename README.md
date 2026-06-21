@@ -107,7 +107,7 @@ python backend/tests/test_moral_scoring.py
 
 ## The Science Part
 
-This extends the **eMACD** (Enhanced Moral And Cultural Dictionary) paper by Malik et al. (2025). Key additions:
+This extends the **EMACD** (Extended Morality as Cooperation Dictionary) paper by Malik et al. (2025). Key additions:
 
 | Feature | Description |
 |---------|-------------|
